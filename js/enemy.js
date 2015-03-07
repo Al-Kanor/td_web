@@ -10,7 +10,7 @@ var enemy = function(scene, sprite)
 	this.scene = scene;
 	this.game = this.scene.game;
 	
-	this.speed = 200/1000;
+    this.speed = 200/1000;
 	this.x = 0;
 	this.y = 0;
 	
@@ -38,7 +38,6 @@ enemy.prototype.moveTo = function(X,Y)
 	
 	var dis = Math.sqrt(Math.pow(this.targetX - this.startX, 2)+Math.pow(this.targetY - this.startY, 2)) //algorithm de la distance
 	this.moveDuration = dis / (this.speed * this.scale);
-	console.log(this.scale);
 	this.isMoving = true;
 };
 
@@ -77,8 +76,8 @@ enemy.prototype.render = function(g)
 		g.translate(this.x, this.y);
 		if(this.currentSprite)
 		{
-			g.scale(0.1, 0.1);
-			g.drawImage(this.currentSprite, this.x, this.y );
+		    g.scale(1, 1);
+		    g.drawImage(this.currentSprite, -this.currentSprite.width / 2, -this.currentSprite.height / 2);
 		}
 	g.restore();
 };

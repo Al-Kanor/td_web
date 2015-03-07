@@ -1,6 +1,5 @@
 var game = function()
 {
-	console.log("game created");
 	var self = this;
 	
 	this.canvas = document.getElementById('game');

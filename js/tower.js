@@ -19,6 +19,7 @@ var tower = function(scene, sprite)
 	this.target = null;
 	this.sprite = sprite;
 	
+	this.target = null;
 	self.loadSprite(this.sprite);
 };
 
@@ -30,7 +31,13 @@ tower.prototype.placement = function(x,y)
 
 tower.prototype.tir = function()
 {
-	console.log("tir");
+    console.log("tir");
+    this.target = this.scene.enemyList[0];
+    var tir = new projectile(this.scene, "res/sprites/tir.png");
+    tir.placement(this.x, this.y);
+    tir.moveTo(this.target.x , this.target.y );
+    this.scene.shootList[this.scene.indexShootList] = tir;
+    this.scene.indexShootList++;
 };
 
 tower.prototype.evolution = function()
@@ -48,7 +55,7 @@ tower.prototype.loadSprite = function(srcImg)
 
 tower.prototype.update = function(timeData)
 {
-	if(self.game.timeData.global - this.lastShoot > 50)
+	if(self.game.timeData.global - this.lastShoot > 1000)
 	{
 		this.tir();
 		this.lastShoot = self.game.timeData.global;
@@ -61,7 +68,7 @@ tower.prototype.render = function(g)
 		g.translate(this.x, this.y);
 		if(this.currentSprite)
 		{
-			g.scale(0.1, 0.1);
+			g.scale(1, 1);
 			g.drawImage(this.currentSprite, -this.currentSprite.width / 2, -this.currentSprite.height / 2);
 		}
 	g.restore();
