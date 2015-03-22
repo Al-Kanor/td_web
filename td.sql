@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Dim 22 Mars 2015 à 17:42
+-- Généré le: Dim 22 Mars 2015 à 17:54
 -- Version du serveur: 5.6.12-log
 -- Version de PHP: 5.4.12
 
@@ -32,7 +32,7 @@ DROP TABLE IF EXISTS `enemy`;
 CREATE TABLE IF NOT EXISTS `enemy` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(32) COLLATE utf8_bin NOT NULL,
-  `power` int(11) NOT NULL,
+  `full_name` varchar(32) COLLATE utf8_bin NOT NULL,
   `life` int(11) NOT NULL,
   `isBoss` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
