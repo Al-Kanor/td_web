@@ -61,6 +61,36 @@ projectile.prototype.update = function (timeData)
         this.isMoving = false;
         this.placement(this.targetX, this.targetY);
     }
+	else if (!this.isMoving) {
+		for(var i=0; i< this.scene.enemyList.length; i++)
+		{
+			//if(this.scene.enemyList[i] != undefined)
+			//{
+				var dest = this.lineDistance(this.scene.enemyList[i], this);
+				//console.log("test:"+dest);
+				if(dest < 50)
+				{
+					this.scene.enemyList.splice(i, 1);
+				}
+				delete(this);
+			//}
+			
+		}
+	}
+}
+
+projectile.prototype.lineDistance = function( point1, point2 )
+{
+  var xs = 0;
+  var ys = 0;
+ 
+  xs = point2.x - point1.x;
+  xs = xs * xs;
+ 
+  ys = point2.y - point1.y;
+  ys = ys * ys;
+ 
+  return Math.sqrt( xs + ys );
 }
 
 projectile.prototype.render = function (g) {

@@ -31,13 +31,16 @@ tower.prototype.placement = function(x,y)
 
 tower.prototype.tir = function()
 {
-    console.log("tir");
-    this.target = this.scene.enemyList[0];
-    var tir = new projectile(this.scene, "res/sprites/tir.png");
-    tir.placement(this.x, this.y);
-    tir.moveTo(this.target.x , this.target.y );
-    this.scene.shootList[this.scene.indexShootList] = tir;
-    this.scene.indexShootList++;
+	console.log("tir");
+	this.target = this.scene.enemyList[0];
+	if(this.target != null)
+	{
+		var tir = new projectile(this.scene, "res/sprites/tir.png");
+		tir.placement(this.x, this.y);
+		tir.moveTo(this.target.x , this.target.y );
+		this.scene.shootList[this.scene.indexShootList] = tir;
+		this.scene.indexShootList++;
+	}
 };
 
 tower.prototype.evolution = function()

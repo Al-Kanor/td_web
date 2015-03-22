@@ -85,7 +85,8 @@ scene.prototype.update = function(timeData)
 	
 	for(var i=0; i<this.enemyList.length; i++)
 	{
-	    this.enemyList[i].update(timeData);
+		if(this.enemyList[i] != undefined)
+			this.enemyList[i].update(timeData);
 	}
 
 	for (var i = 0; i < this.shootList.length; i++) {
@@ -108,7 +109,8 @@ scene.prototype.render = function(g)
 		
 		for(var i=0; i<this.enemyList.length; i++)
 		{
-			this.enemyList[i].render(g);
+			if(this.enemyList[i] != undefined)
+				this.enemyList[i].render(g);
 		}
 
 		for (var i = 0; i < this.shootList.length; i++) {
