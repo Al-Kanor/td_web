@@ -3,6 +3,9 @@ var scene = function(game)
 	var self = this;
 	this.game = game;
 	
+	this.background = new Image();
+	this.background.src = "res/sprites/bg.png";
+	
 	this.towerList = [];
 	this.index = 0;
 	
@@ -16,7 +19,7 @@ var scene = function(game)
 	this.mouseY = 0;
 	
 	this.nextEnemyPop = 0;
-	this.nbPopablEnemy = 1;
+	this.nbPopablEnemy = 10;
 	this.currentNbEnemy = 0;
 
 	this.game.canvas.addEventListener('click', function(e){
@@ -35,9 +38,9 @@ var scene = function(game)
 
 scene.prototype.popEnemy = function()
 {
-	var en = new enemy(this, "res/sprites/towers/Bhobo/bhobo_baby_petit.png");
-	en.placement(100, 100);
-	en.moveTo(500,500);
+	var en = new enemy(this, "res/sprites/towers/Bhobo/bhobo_baby_petit.png"); 
+	en.placement(-32, Math.random() * 600);
+	en.moveTo(677, 372);
 	
 	this.enemyList[this.indexEnemyList] = en;
 	this.indexEnemyList++;
@@ -92,17 +95,25 @@ scene.prototype.update = function(timeData)
 
 scene.prototype.render = function(g)
 {
-	for(var i=0; i<this.towerList.length; i++)
-	{
-		this.towerList[i].render(g);
-	}
+	g.save();
 	
-	for(var i=0; i<this.enemyList.length; i++)
-	{
-		this.enemyList[i].render(g);
-	}
+		//g.translate(-this.backgroundX, -this.backgroundY);
+		
+		g.drawImage(this.background, 0, 0);
+		
+		for(var i=0; i<this.towerList.length; i++)
+		{
+			this.towerList[i].render(g);
+		}
+		
+		for(var i=0; i<this.enemyList.length; i++)
+		{
+			this.enemyList[i].render(g);
+		}
 
-	for (var i = 0; i < this.shootList.length; i++) {
-	    this.shootList[i].render(g);
-	}
-}
+		for (var i = 0; i < this.shootList.length; i++) {
+			this.shootList[i].render(g);
+		}
+		
+	g.restore();
+};

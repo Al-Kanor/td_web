@@ -52,7 +52,10 @@ projectile.prototype.update = function (timeData)
         this.placement(
 			f * (this.targetX - this.startX) + this.startX,
 			f * (this.targetY - this.startY) + this.startY);
-
+		
+		if (Math.abs(1 - f) < 0.1) {
+			// Die !
+		}
     }
     else if (this.isMoving) {
         this.isMoving = false;
