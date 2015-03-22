@@ -1,4 +1,8 @@
-﻿<!DOCTYPE HTML>
+﻿<?php
+include 'connection.php';
+?>
+
+<!DOCTYPE HTML>
 <html>
 	<head>
 		<meta charset="UTF-8"/>
@@ -13,6 +17,9 @@
 		<script src="js/main.js"></script>
 	</head>
 	<body>
+	<?php
+	include 'loadData.php';
+	?>
 	<div id="screen">
 		<canvas id="game"></canvas>
 		<div id="gui">
