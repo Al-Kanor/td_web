@@ -1,12 +1,12 @@
-var game = function()
+var Game = function()
 {
 	var self = this;
 	
 	this.canvas = document.getElementById('game');
 	this.graphics = this.canvas.getContext('2d');
-	
-	this.canvas.width = game.WIDTH;
-	this.canvas.height = game.HEIGHT;
+
+	this.canvas.width = Game.WIDTH;
+	this.canvas.height = Game.HEIGHT;
 	
 	this.timeData = {
 		global:Date.now(),
@@ -19,7 +19,17 @@ var game = function()
 	this.graphics.height = this.canvas.height;
 	this.graphics.timeData = this.timeData;
 	
-	this.scene = new scene(this);
+	this.drawGrid(this.graphics);
+
+	this.colNum = 16;
+	this.rowNum = 11;
+	this.caseSize = Game.WIDTH / this.colNum;
+
+	console.log(this.colNum);
+	console.log(this.rowNum);
+	console.log(this.caseSize);
+
+	this.scene = new Scene(this, level1);
 	
 	requestAnimationFrame(function loop(){
 		self.mainLoop();
@@ -27,10 +37,10 @@ var game = function()
 	});
 };
 
-game.WIDTH = 800;
-game.HEIGHT = 600;
+Game.WIDTH = 1024;
+Game.HEIGHT = 672;
 
-game.prototype.mainLoop = function()
+Game.prototype.mainLoop = function ()
 {
 	var now = Date.now();
 	this.timeData.globalDelta = now - this.timeData.global;
@@ -43,16 +53,41 @@ game.prototype.mainLoop = function()
 	this.render(this.graphics);
 }
 
-game.prototype.update = function(timeData)
+Game.prototype.update = function (timeData)
 {
 	this.scene.update(timeData);
 };
 
-game.prototype.render = function(g)
+Game.prototype.drawGrid = function (g)
+{
+    g.fillStyle = "red";
+    g.beginPath();
+    for (var col = 0; col <= this.colNum; col++) {
+        for (var row = 0; row <= this.rowNum ; row++) {
+            g.moveTo(col * this.caseSize, row * this.caseSize);
+            g.lineTo((col * this.caseSize), (row * this.caseSize) + this.caseSize); // ligne verticale
+            g.moveTo(col * this.caseSize, row * this.caseSize);
+            g.lineTo((col * this.caseSize) + this.caseSize, (row * this.caseSize)); // ligne horizontale
+        }
+    }
+    g.closePath();
+    g.stroke();
+}
+
+Game.prototype.render = function (g)
 {
 	g.clearRect(0, 0, g.width, g.height);
 	g.fillStyle = "red";
 	g.fillRect(0, 0, g.width, g.height);
-	
+
 	this.scene.render(g);
+
+	this.drawGrid(g);
+
+	g.fillStyle = "red";
+	g.font = "25px Verdana";
+	g.fillText("LIVES : " + this.scene.player.life, 20, 30);
+	g.fillText("GOLD : " + this.scene.player.gold, 300, 30);
+
+	
 };

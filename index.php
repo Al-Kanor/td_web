@@ -8,6 +8,9 @@ include 'connection.php';
 		<meta charset="UTF-8"/>
 		<title>td web</title>
         <script src="js/game.js"></script>
+        <script src="js/GroundType.js"></script>
+        <script src="js/Storage.js"></script>
+        <script src="js/player.js"></script>
 		<script src="js/projectile.js"></script>
 		<script src="js/tower.js"></script>
 		<script src="js/enemy.js"></script>
@@ -15,6 +18,7 @@ include 'connection.php';
 		<script src="js/scene.js"></script>
 		<script src="js/sprite.js"></script>
 		<script src="js/main.js"></script>
+		<script src="js/level-design.json"></script>
 	</head>
 	<body>
 	<?php

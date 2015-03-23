@@ -1,4 +1,4 @@
-var enemy = function(scene, sprite)
+var Enemy = function(scene, sprite)
 {
 	var self = this;
 	
@@ -10,11 +10,15 @@ var enemy = function(scene, sprite)
 	this.scene = scene;
 	this.game = this.scene.game;
 	
-    this.speed = 200/1000;
+    this.speed = 200/500;
 	this.x = 0;
 	this.y = 0;
 	
+	this.index = 0;
+
 	this.scale = 0.1;
+
+	this.life = 40;
 	
 	this.dest = null;
 	this.sprite = sprite;
@@ -22,13 +26,13 @@ var enemy = function(scene, sprite)
 	self.loadSprite(this.sprite);
 };
 
-enemy.prototype.placement = function(x,y)
+Enemy.prototype.placement = function (x, y)
 {
 	this.x = x;
 	this.y = y;
 };
 
-enemy.prototype.moveTo = function(X,Y)
+Enemy.prototype.moveTo = function (X, Y)
 {
 	this.startX = this.x;
 	this.startY = this.y;
@@ -42,7 +46,7 @@ enemy.prototype.moveTo = function(X,Y)
 };
 
 
-enemy.prototype.loadSprite = function(srcImg)
+Enemy.prototype.loadSprite = function (srcImg)
 {
 	var self = this;
 	var image = new Image();
@@ -50,7 +54,7 @@ enemy.prototype.loadSprite = function(srcImg)
 	this.currentSprite = image;
 };
 
-enemy.prototype.update = function(timeData)
+Enemy.prototype.update = function (timeData)
 {
 	if(this.moveTime && timeData.local < this.moveTime + this.moveDuration){
 		var f = (timeData.local - this.moveTime)/this.moveDuration;
@@ -68,9 +72,14 @@ enemy.prototype.update = function(timeData)
 		this.isMoving = false;
 		this.placement(this.targetX, this.targetY);
 	}
+	else if (!this.isMoving)
+	{
+	    this.scene.player.removeLife();
+	    this.scene.enemyList.splice(this.index, 1);
+	}
 };
 
-enemy.prototype.render = function(g)
+Enemy.prototype.render = function (g)
 {
 	g.save();
 		g.translate(this.x, this.y);

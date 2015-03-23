@@ -1,0 +1,1 @@
+﻿var GroundType = {EMPTY:0, TREE:1, EXIT:2, TOWER:3, EVOLVED:4};

@@ -1,4 +1,4 @@
-var scene = function(game)
+var Scene = function(game, terrain)
 {
 	var self = this;
 	this.game = game;
@@ -9,6 +9,8 @@ var scene = function(game)
 	this.towerList = [];
 	this.index = 0;
 	
+	this.terrain = terrain;
+
 	this.enemyList = [];
 	this.indexEnemyList = 0;
 	
@@ -22,51 +24,95 @@ var scene = function(game)
 	this.nbPopablEnemy = 10;
 	this.currentNbEnemy = 0;
 
+	this.player = new Player(this);
+
 	this.game.canvas.addEventListener('click', function(e){
-		//console.log("evolution");
 		var offset = getOffset(game.canvas);
-		self.create(e.clientX - offset.left, e.clientY - offset.top);
+		self.WorldToGrid(e.clientX - offset.left, e.clientY - offset.top, 0);
 	});
 	
 	this.game.canvas.addEventListener('contextmenu', function(ev) {
-		ev.preventDefault();
-		console.log("placement");
+	    ev.preventDefault();
+	    var offset = getOffset(game.canvas);
 		return false;
 	}, false);
 	
 };
 
-scene.prototype.popEnemy = function()
+Scene.prototype.WorldToGrid = function(X,Y, action)
 {
-	var en = new enemy(this, "res/sprites/towers/Bhobo/bhobo_baby_petit.png"); 
+    var caseLength = this.game.caseSize;
+
+    for(var i= 0; i < level1.length; i++) //lignes (y)
+    {
+        for (var j = 0; j < level1[i].length; j++) //colonnes (x)
+        {
+            if(i*caseLength < Y && (i*caseLength)+caseLength > Y && j*caseLength < X && (j*caseLength)+caseLength > X)
+            {
+                if(level1[i][j] == GroundType.EMPTY && action == 0)
+                {
+                    if (this.player.gold >= 100)
+                    {
+                        level1[i][j] = 3;
+                        this.create((j * caseLength) + caseLength / 2, (i * caseLength) + caseLength / 2);
+                        this.player.gold -= 100;
+                    }
+                }
+                else if(level1[i][j] == GroundType.TOWER && action == 0)
+                {
+                    if (this.player.gold >= 500)
+                    {
+                        level1[i][j] = 4;
+                        var theTower = this.getTower((j * caseLength) + caseLength / 2, (i * caseLength) + caseLength / 2);
+                        theTower.evolve();
+                        this.player.gold -= 500;
+                   }
+                }
+            }
+        }
+    }
+}
+
+Scene.prototype.getTower = function(X, Y)
+{
+    for(var i=0; i < this.towerList.length; i++)
+    {
+        if (this.towerList[i].x == X && this.towerList[i].y == Y)
+        {
+            return this.towerList[i];
+        }
+    }
+}
+
+Scene.prototype.popEnemy = function ()
+{
+	var en = new Enemy(this, "res/sprites/towers/Bhobo/bhobo_baby_petit.png"); 
 	en.placement(-32, Math.random() * 600);
 	en.moveTo(677, 372);
-	
+	en.index = this.indexEnemyList;
 	this.enemyList[this.indexEnemyList] = en;
 	this.indexEnemyList++;
 }
 
-scene.prototype.create = function(X,Y)
+Scene.prototype.create = function (X, Y)
 {
-	var thetower = new landTower(this);
+	var thetower = new LandTower(this);
 	thetower.placement(X, Y);
-	console.log("tower.x:" + X);
-	console.log("tower.y:" + Y);
 	this.towerList[this.index] = thetower;
 	this.index++;
 }
 
-scene.prototype.getEnemy = function () {
+Scene.prototype.getEnemy = function () {
     return this.enemyList[0];
 }
 
-scene.prototype.add = function(tower)
+Scene.prototype.add = function (tower)
 {
 	this.towerList[this.index] = tower;
 	this.index++;
 }
 
-scene.prototype.update = function(timeData)
+Scene.prototype.update = function (timeData)
 {
 	if(timeData.local > this.nextEnemyPop)
 	{
@@ -90,14 +136,15 @@ scene.prototype.update = function(timeData)
 	}
 
 	for (var i = 0; i < this.shootList.length; i++) {
-	    this.shootList[i].update(timeData);
+	    if (this.shootList[i] != undefined)
+	        this.shootList[i].update(timeData);
 	}
 }
 
-scene.prototype.render = function(g)
+Scene.prototype.render = function (g)
 {
 	g.save();
-	
+
 		//g.translate(-this.backgroundX, -this.backgroundY);
 		
 		g.drawImage(this.background, 0, 0);
@@ -114,7 +161,8 @@ scene.prototype.render = function(g)
 		}
 
 		for (var i = 0; i < this.shootList.length; i++) {
-			this.shootList[i].render(g);
+		    if (this.shootList[i] != undefined)
+			    this.shootList[i].render(g);
 		}
 		
 	g.restore();

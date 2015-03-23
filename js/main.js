@@ -1,5 +1,5 @@
 window.addEventListener("load", function(){
-	game = new game();
+	game = new Game();
 });
 
 function getOffset(elm)

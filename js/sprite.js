@@ -1,9 +1,9 @@
-var sprite = function(image)
+var Sprite = function(image)
 {
 	this.image = image;
 }
 
-sprite.prototype.render = function(g)
+Sprite.prototype.render = function (g)
 {
 	g.drawImage(this.image);
 }

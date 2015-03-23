@@ -1,8 +1,15 @@
-var landTower = function(scene)
+var LandTower = function(scene)
 {
 	var self = this;
-	tower.call(this, scene, "res/sprites/towers/Awa/awa_baby_petit.png");
+	Tower.call(this, scene, "res/sprites/towers/Awa/awa_baby_petit.png");
 	this.game = this.scene.game;
 };
 
-landTower.prototype = new tower();
+LandTower.prototype = new Tower();
+
+LandTower.prototype.evolve = function()
+{
+    this.loadSprite("res/sprites/towers/Awa/awa_young.png");
+    this.evolution = 1;
+    this.timeToShoot = 500;
+}
