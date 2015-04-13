@@ -75,7 +75,9 @@ Projectile.prototype.update = function (timeData)
 			        if (this.scene.enemyList[i].life == 0)
 			        {
 			            this.scene.enemyList.splice(i, 1);
+						this.scene.currentNbEnemy--;
 			            this.scene.player.gold += 20;
+						this.scene.player.score++;
 			        }
 				}
 				this.scene.shootList.splice(this.index, 1);

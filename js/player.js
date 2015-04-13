@@ -2,15 +2,15 @@ var Player = function(scene)
 {
     this.life = 20;
     this.gold = 1000;
+	this.score = 0;
 }
 
 Player.prototype.removeLife = function ()
 {
-   /* this.life--;
-    console.log("remove life");
-    if(this.life <= 0)
-    {
-        this.life = 0;
-        console.log("perdu");
-    }*/
+   this.life - Math.min (this.life - 1, 0);
+   
+   if (0 == this.life)
+   {
+       console.log("perdu");
+   }
 }

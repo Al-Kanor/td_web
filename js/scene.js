@@ -20,6 +20,7 @@ var Scene = function(game, terrain)
 	var mouseX = 0;
 	this.mouseY = 0;
 	
+	this.nbEnemies = 3;	// Number of different existing creatures
 	this.nextEnemyPop = 0;
 	this.nbPopablEnemy = 10;
 	this.currentNbEnemy = 0;
@@ -86,9 +87,80 @@ Scene.prototype.getTower = function(X, Y)
 
 Scene.prototype.popEnemy = function ()
 {
-	var en = new Enemy(this, "res/sprites/towers/Bhobo/bhobo_baby_petit.png"); 
+	var rand = Math.floor (Math.random () * this.nbEnemies);
+	var score = this.game.scene.player.score;
+	if (score < 10) {
+		var level = 1;
+	}
+	else if (score < 20) {
+		var level = 2;
+	}
+	else {
+		var level = 3;
+	}
+	switch (rand) {
+		case 0:
+			switch (level) {
+				case 1:
+					var enemyStr = "Agoros/agoros_baby_small.png";
+					var speed = 200/500;
+					var life = 50;
+					break;
+				case 2:
+					var enemyStr = "Agoros/agoros_young_small.png";
+					var speed = 150/500;
+					var life = 100;
+					break;
+				case 3:
+					var enemyStr = "Agoros/agoros_adult_small.png";
+					var speed = 100/500;
+					var life = 150;
+					break;
+			}
+			break;
+		case 1:
+			switch (level) {
+				case 1:
+					var enemyStr = "Bhobo/bhobo_baby_small.png";
+					var speed = 200/500;
+					var life = 30;
+					break;
+				case 2:
+					var enemyStr = "Bhobo/bhobo_young_small.png";
+					var speed = 200/500;
+					var life = 60;
+					break;
+				case 3:
+					var enemyStr = "Bhobo/bhobo_adult_small.png";
+					var speed = 200/500;
+					var life = 90;
+					break;
+			}
+			break;
+		case 2:
+			switch (level) {
+				case 1:
+					var enemyStr = "Bugjo/bugjo_baby_small.png";
+					var speed = 300/500;
+					var life = 40;
+					break;
+				case 2:
+					var enemyStr = "Bugjo/bugjo_young_small.png";
+					var speed = 400/500;
+					var life = 60;
+					break;
+				case 3:
+					var enemyStr = "Bugjo/bugjo_adult_small.png";
+					var speed = 500/500;
+					var life = 80;
+					break;
+			}
+			break;
+	}
+	var en = new Enemy(this, "res/sprites/towers/" + enemyStr); 
+	en.speed = speed;
 	en.placement(-32, Math.random() * 600);
-	en.moveTo(677, 372);
+	en.moveTo(864, 418);
 	en.index = this.indexEnemyList;
 	this.enemyList[this.indexEnemyList] = en;
 	this.indexEnemyList++;

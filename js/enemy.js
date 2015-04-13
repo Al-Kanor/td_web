@@ -66,6 +66,10 @@ Enemy.prototype.update = function (timeData)
 			f * (this.targetX - this.startX) + this.startX,
 			f * (this.targetY - this.startY) + this.startY);
 		
+		/*this.placement (
+			this.startX + Math.floor ((Math.random () * 3)  - 1) * f,
+			this.startY + Math.floor ((Math.random () * 3)  - 1) * f
+		);*/
 	}
 	else if (this.isMoving)
 	{
