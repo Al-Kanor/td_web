@@ -88,6 +88,4 @@ Game.prototype.render = function (g)
 	g.font = "25px Verdana";
 	g.fillText("LIVES : " + this.scene.player.life, 20, 30);
 	g.fillText("GOLD : " + this.scene.player.gold, 300, 30);
-
-	
 };
