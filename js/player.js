@@ -1,5 +1,6 @@
 var Player = function(scene)
 {
+	this.scene = scene;
     this.life = 20;
     this.gold = 1000;
 	this.score = 0;
@@ -17,5 +18,13 @@ Player.prototype.removeLife = function ()
    if (0 == this.life)
    {
        console.log("perdu");
+	   this.scene.reset();
    }
+}
+
+Player.prototype.init = function ()
+{
+	this.life = 20;
+    this.gold = 1000;
+	this.score = 0;
 }

@@ -74,6 +74,20 @@ Scene.prototype.WorldToGrid = function(X,Y, action)
     }
 }
 
+Scene.prototype.reset = function()
+{
+    this.towerList = [];
+	this.index = 0;
+
+	this.enemyList = [];
+	this.indexEnemyList = 0;
+	
+	this.shootList = [];
+	this.indexShootList = 0;
+	
+	this.player.init();
+}
+
 Scene.prototype.getTower = function(X, Y)
 {
     for(var i=0; i < this.towerList.length; i++)
@@ -162,7 +176,6 @@ Scene.prototype.popEnemy = function ()
 	en.placement(-32, Math.random() * 600);
 	en.moveTo(864, 418);
 	en.index = this.indexEnemyList;
-	console.log(en.index);
 	this.enemyList[this.indexEnemyList] = en;
 	this.indexEnemyList++;
 }

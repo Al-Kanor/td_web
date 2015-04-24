@@ -80,11 +80,11 @@ Projectile.prototype.update = function (timeData)
 						this.scene.player.score++;
 			        }
 				}
-				this.scene.shootList.splice(this.index, 1);
+				this.scene.shootList[this.index] = null;
 				return;
 			}
 		}
-		this.scene.shootList.splice(this.index, 1);
+		this.scene.shootList[this.index] = null;
 	}
 }
 
