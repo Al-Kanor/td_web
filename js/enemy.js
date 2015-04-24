@@ -79,7 +79,9 @@ Enemy.prototype.update = function (timeData)
 	else if (!this.isMoving)
 	{
 	    this.scene.player.removeLife();
+		console.log(this.scene.enemyList)
 	    this.scene.enemyList.splice(this.index, 1);
+		this.scene.currentNbEnemy --;
 	}
 };
 

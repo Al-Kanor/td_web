@@ -25,10 +25,6 @@ var Game = function()
 	this.rowNum = 11;
 	this.caseSize = Game.WIDTH / this.colNum;
 
-	console.log(this.colNum);
-	console.log(this.rowNum);
-	console.log(this.caseSize);
-
 	this.scene = new Scene(this, level1);
 	
 	requestAnimationFrame(function loop(){

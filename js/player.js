@@ -7,7 +7,12 @@ var Player = function(scene)
 
 Player.prototype.removeLife = function ()
 {
-   this.life - Math.min (this.life - 1, 0);
+   //this.life - Math.min (this.life - 1, 0);
+   
+   if(this.life > 0)
+   {
+		this.life -= 1;
+   }
    
    if (0 == this.life)
    {

@@ -162,6 +162,7 @@ Scene.prototype.popEnemy = function ()
 	en.placement(-32, Math.random() * 600);
 	en.moveTo(864, 418);
 	en.index = this.indexEnemyList;
+	console.log(en.index);
 	this.enemyList[this.indexEnemyList] = en;
 	this.indexEnemyList++;
 }
