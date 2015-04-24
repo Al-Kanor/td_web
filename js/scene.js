@@ -20,7 +20,7 @@ var Scene = function(game, terrain)
 	var mouseX = 0;
 	this.mouseY = 0;
 	
-	this.nbEnemies = 3;	// Number of different existing creatures
+	this.nbEnemies = 15;	// Number of different existing creatures
 	this.nextEnemyPop = 0;
 	this.nbPopablEnemy = 10;
 	this.currentNbEnemy = 0;
@@ -151,6 +151,198 @@ Scene.prototype.popEnemy = function ()
 					break;
 				case 3:
 					var enemyStr = "Bugjo/bugjo_adult_small.png";
+					var speed = 500/500;
+					var life = 80;
+					break;
+			}
+			break;
+		case 3:
+			switch (level) {
+				case 1:
+					var speed = 300/500;
+					var life = 40;
+					break;
+				case 2:
+					var speed = 400/500;
+					var life = 60;
+					break;
+				case 3:
+					var speed = 500/500;
+					var life = 80;
+					break;
+			}
+			break;
+		case 4:
+			switch (level) {
+				case 1:
+					var speed = 300/500;
+					var life = 40;
+					break;
+				case 2:
+					var speed = 400/500;
+					var life = 60;
+					break;
+				case 3:
+					var speed = 500/500;
+					var life = 80;
+					break;
+			}
+			break;
+		case 5:
+			switch (level) {
+				case 1:
+					var speed = 300/500;
+					var life = 40;
+					break;
+				case 2:
+					var speed = 400/500;
+					var life = 60;
+					break;
+				case 3:
+					var speed = 500/500;
+					var life = 80;
+					break;
+			}
+			break;
+		case 6:
+			switch (level) {
+				case 1:
+					var speed = 300/500;
+					var life = 40;
+					break;
+				case 2:
+					var speed = 400/500;
+					var life = 60;
+					break;
+				case 3:
+					var speed = 500/500;
+					var life = 80;
+					break;
+			}
+			break;
+		case 7:
+			switch (level) {
+				case 1:
+					var speed = 300/500;
+					var life = 40;
+					break;
+				case 2:
+					var speed = 400/500;
+					var life = 60;
+					break;
+				case 3:
+					var speed = 500/500;
+					var life = 80;
+					break;
+			}
+			break;
+		case 8:
+			switch (level) {
+				case 1:
+					var speed = 300/500;
+					var life = 40;
+					break;
+				case 2:
+					var speed = 400/500;
+					var life = 60;
+					break;
+				case 3:
+					var speed = 500/500;
+					var life = 80;
+					break;
+			}
+			break;
+		case 9:
+			switch (level) {
+				case 1:
+					var speed = 300/500;
+					var life = 40;
+					break;
+				case 2:
+					var speed = 400/500;
+					var life = 60;
+					break;
+				case 3:
+					var speed = 500/500;
+					var life = 80;
+					break;
+			}
+			break;
+		case 10:
+			switch (level) {
+				case 1:
+					var speed = 300/500;
+					var life = 40;
+					break;
+				case 2:
+					var speed = 400/500;
+					var life = 60;
+					break;
+				case 3:
+					var speed = 500/500;
+					var life = 80;
+					break;
+			}
+			break;
+		case 11:
+			switch (level) {
+				case 1:
+					var speed = 300/500;
+					var life = 40;
+					break;
+				case 2:
+					var speed = 400/500;
+					var life = 60;
+					break;
+				case 3:
+					var speed = 500/500;
+					var life = 80;
+					break;
+			}
+			break;
+		case 12:
+			switch (level) {
+				case 1:
+					var speed = 300/500;
+					var life = 40;
+					break;
+				case 2:
+					var speed = 400/500;
+					var life = 60;
+					break;
+				case 3:
+					var speed = 500/500;
+					var life = 80;
+					break;
+			}
+			break;
+		case 13:
+			switch (level) {
+				case 1:
+					var speed = 300/500;
+					var life = 40;
+					break;
+				case 2:
+					var speed = 400/500;
+					var life = 60;
+					break;
+				case 3:
+					var speed = 500/500;
+					var life = 80;
+					break;
+			}
+			break;
+		case 14:
+			switch (level) {
+				case 1:
+					var speed = 300/500;
+					var life = 40;
+					break;
+				case 2:
+					var speed = 400/500;
+					var life = 60;
+					break;
+				case 3:
 					var speed = 500/500;
 					var life = 80;
 					break;
