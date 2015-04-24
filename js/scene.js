@@ -401,8 +401,31 @@ Scene.prototype.popEnemy = function ()
 	}
 	var en = new Enemy(this, "res/sprites/enemies/" + enemyStr); 
 	en.speed = speed;
+	en.life = life;
 	en.placement(-32, Math.random() * 600);
-	en.moveTo(864, 418);
+
+	var caseLength = this.game.caseSize;
+	//en.moveTo(864, 418);
+	var pattern = Math.floor(Math.random() * 3);
+	var move = [];
+	switch (pattern) {
+		case 0:
+			move[0] = [1 * caseLength + caseLength / 2, 1 * caseLength + caseLength / 2];
+			move[1] = [3 * caseLength + caseLength / 2, 4 * caseLength + caseLength / 2];
+			move[2] = [13 * caseLength + caseLength / 2, 6 * caseLength + caseLength / 2];
+			break;
+		case 1:
+			move[0] = [2 * caseLength + caseLength / 2, 2 * caseLength + caseLength / 2];
+			move[1] = [10 * caseLength + caseLength / 2, 1 * caseLength + caseLength / 2];
+			move[2] = [13 * caseLength + caseLength / 2, 6 * caseLength + caseLength / 2];
+			break;
+		case 2:
+			move[0] = [4 * caseLength + caseLength / 2, 7 * caseLength + caseLength / 2];
+			move[1] = [7 * caseLength + caseLength / 2, 7 * caseLength + caseLength / 2];
+			move[2] = [13 * caseLength + caseLength / 2, 6 * caseLength + caseLength / 2];
+			break;
+	}
+	
 	en.index = this.indexEnemyList;
 	this.enemyList[this.indexEnemyList] = en;
 	this.indexEnemyList++;
