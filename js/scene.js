@@ -157,7 +157,7 @@ Scene.prototype.popEnemy = function ()
 			}
 			break;
 	}
-	var en = new Enemy(this, "res/sprites/towers/" + enemyStr); 
+	var en = new Enemy(this, "res/sprites/enemies/" + enemyStr); 
 	en.speed = speed;
 	en.placement(-32, Math.random() * 600);
 	en.moveTo(864, 418);
