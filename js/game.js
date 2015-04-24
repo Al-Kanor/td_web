@@ -46,6 +46,9 @@ Game.prototype.onResize = function()
     this.graphics.width = document.body.clientWidth;
     this.graphics.height = document.body.clientHeight;
     this.scale = this.canvas.height / Game.HEIGHT;
+	console.log(this.scale);
+	console.log(document.body.clientHeight);
+	console.log(Game.HEIGHT);
 }
 
 Game.prototype.mainLoop = function ()
@@ -92,7 +95,6 @@ Game.prototype.render = function (g)
 	    g.scale(this.scale, this.scale);
 	    if (this.scene)
 	    {
-
 			this.scene.render(g);
 
 			this.drawGrid(g);
