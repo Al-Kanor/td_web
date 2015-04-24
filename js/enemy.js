@@ -18,11 +18,14 @@ var Enemy = function(scene, sprite)
 
 	this.scale = 0.1;
 
-	this.life = 40;
+	this.life = 1;
 	
 	this.dest = null;
 	this.sprite = sprite;
 	
+	this.move = [];
+	this.moveIndex = 0;
+
 	self.loadSprite(this.sprite);
 };
 
@@ -32,19 +35,33 @@ Enemy.prototype.placement = function (x, y)
 	this.y = y;
 };
 
-Enemy.prototype.moveTo = function (X, Y)
+Enemy.prototype.moveTo = function (move)
 {
+	this.move = move;
+
 	this.startX = this.x;
 	this.startY = this.y;
+
+	/*
 	this.targetX = X;
 	this.targetY = Y;
+	*/
+	this.targetX = move[moveIndex][0];
+	this.targetY = move[moveIndex][1];
+
+	//test
+	this.targetX = 864;
+	this.targetY = 418;
+
 	this.moveTime = this.game.timeData.local;
 	
 	var dis = Math.sqrt(Math.pow(this.targetX - this.startX, 2)+Math.pow(this.targetY - this.startY, 2)) //algorithm de la distance
 	this.moveDuration = dis / (this.speed * this.scale);
 	this.isMoving = true;
-};
+	var str = "";
 
+	moveIndex++;
+};
 
 Enemy.prototype.loadSprite = function (srcImg)
 {
@@ -75,6 +92,7 @@ Enemy.prototype.update = function (timeData)
 	{
 		this.isMoving = false;
 		this.placement(this.targetX, this.targetY);
+		this.moveTo(this.move);
 	}
 	else if (!this.isMoving)
 	{
