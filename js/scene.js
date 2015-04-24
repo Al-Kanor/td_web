@@ -50,7 +50,7 @@ Scene.prototype.WorldToGrid = function(X,Y, action)
         {
             if(i*caseLength < Y && (i*caseLength)+caseLength > Y && j*caseLength < X && (j*caseLength)+caseLength > X)
             {
-                if(level1[i][j] == GroundType.EMPTY && action == 0)
+                if(level1[i][j] == GroundType.TREE && action == 0)
                 {
                     if (this.player.gold >= 100)
                     {
@@ -86,6 +86,20 @@ Scene.prototype.reset = function()
 	this.indexShootList = 0;
 	
 	this.player.init();
+	
+	level1 = [
+		[1,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1],
+		[1,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1],
+		[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+		[1,0,0,0,0,0,1,0,0,0,0,1,0,0,0,1],
+		[0,0,1,0,1,0,0,0,0,1,0,0,0,1,0,0],
+		[0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0],
+		[0,0,1,0,1,0,0,0,0,1,0,0,0,2,0,0],
+		[1,0,0,0,0,0,1,0,0,0,0,1,0,0,0,1],
+		[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+		[1,1,1,0,1,1,1,1,1,1,1,1,0,1,1,1]
+	];
+	
 }
 
 Scene.prototype.getTower = function(X, Y)

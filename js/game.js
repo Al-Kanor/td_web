@@ -26,7 +26,10 @@ var Game = function()
 	this.caseSize = Game.WIDTH / this.colNum;
 
 	this.scene = new Scene(this, level1);
-	
+	addEventListener('resize', function () {
+	    self.onResize();
+	});
+	self.onResize();
 	requestAnimationFrame(function loop(){
 		self.mainLoop();
 		requestAnimationFrame(loop);
@@ -35,6 +38,15 @@ var Game = function()
 
 Game.WIDTH = 1024;
 Game.HEIGHT = 672;
+
+Game.prototype.onResize = function()
+{
+    this.canvas.width = document.body.clientWidth;
+    this.canvas.height = document.body.clientHeight;
+    this.graphics.width = document.body.clientWidth;
+    this.graphics.height = document.body.clientHeight;
+    this.scale = this.canvas.height / Game.HEIGHT;
+}
 
 Game.prototype.mainLoop = function ()
 {
@@ -76,12 +88,19 @@ Game.prototype.render = function (g)
 	g.fillStyle = "red";
 	g.fillRect(0, 0, g.width, g.height);
 
-	this.scene.render(g);
+	g.save();
+	    g.scale(this.scale, this.scale);
+	    if (this.scene)
+	    {
 
-	this.drawGrid(g);
+			this.scene.render(g);
 
-	g.fillStyle = "red";
-	g.font = "25px Verdana";
-	g.fillText("LIVES : " + this.scene.player.life, 20, 30);
-	g.fillText("GOLD : " + this.scene.player.gold, 300, 30);
+			this.drawGrid(g);
+
+			g.fillStyle = "red";
+			g.font = "25px Verdana";
+			g.fillText("LIVES : " + this.scene.player.life, 20, 30);
+			g.fillText("GOLD : " + this.scene.player.gold, 300, 30);
+		}
+	g.restore();
 };
