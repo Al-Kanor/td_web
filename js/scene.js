@@ -132,17 +132,17 @@ Scene.prototype.popEnemy = function ()
 				case 1:
 					var enemyStr = "Agoros/agoros_baby_small.png";
 					var speed = 200/500;
-					var life = 1;
+					var life = 3;
 					break;
 				case 2:
 					var enemyStr = "Agoros/agoros_young_small.png";
 					var speed = 150/500;
-					var life = 10;
+					var life = 6;
 					break;
 				case 3:
 					var enemyStr = "Agoros/agoros_adult_small.png";
 					var speed = 100/500;
-					var life = 15;
+					var life = 9;
 					break;
 			}
 			break;
@@ -150,18 +150,18 @@ Scene.prototype.popEnemy = function ()
 			switch (level) {
 				case 1:
 					var enemyStr = "Bhobo/bhobo_baby_small.png";
-					var speed = 200/500;
-					var life = 1;
+					var speed = 150/500;
+					var life = 4;
 					break;
 				case 2:
 					var enemyStr = "Bhobo/bhobo_young_small.png";
-					var speed = 200/500;
-					var life = 6;
+					var speed = 100/500;
+					var life = 10;
 					break;
 				case 3:
 					var enemyStr = "Bhobo/bhobo_adult_small.png";
-					var speed = 200/500;
-					var life = 9;
+					var speed = 50/500;
+					var life = 16;
 					break;
 			}
 			break;
@@ -188,18 +188,18 @@ Scene.prototype.popEnemy = function ()
 			switch (level) {
 				case 1:
 					var enemyStr = "Deathkoogo/deathkoogo_baby_small.png";
-					var speed = 300/500;
-					var life = 1;
+					var speed = 200/500;
+					var life = 3;
 					break;
 				case 2:
 					var enemyStr = "Deathkoogo/deathkoogo_young_small.png";
-					var speed = 400/500;
+					var speed = 150/500;
 					var life = 6;
 					break;
 				case 3:
 					var enemyStr = "Deathkoogo/deathkoogo_adult_small.png";
-					var speed = 500/500;
-					var life = 8;
+					var speed = 100/500;
+					var life = 9;
 					break;
 			}
 			break;
@@ -207,18 +207,18 @@ Scene.prototype.popEnemy = function ()
 			switch (level) {
 				case 1:
 					var enemyStr = "Dudamo/dudamo_baby_small.png";
-					var speed = 300/500;
-					var life = 1;
+					var speed = 150/500;
+					var life = 4;
 					break;
 				case 2:
 					var enemyStr = "Dudamo/dudamo_young_small.png";
-					var speed = 400/500;
-					var life = 6;
+					var speed = 100/500;
+					var life = 10;
 					break;
 				case 3:
 					var enemyStr = "Dudamo/dudamo_adult_small.png";
-					var speed = 500/500;
-					var life = 8;
+					var speed = 50/500;
+					var life = 16;
 					break;
 			}
 			break;
@@ -245,18 +245,18 @@ Scene.prototype.popEnemy = function ()
 			switch (level) {
 				case 1:
 					var enemyStr = "Gourouzad/gourouzad_baby_small.png";
-					var speed = 300/500;
-					var life = 1;
+					var speed = 200/500;
+					var life = 3;
 					break;
 				case 2:
 					var enemyStr = "Gourouzad/gourouzad_young_small.png";
-					var speed = 400/500;
+					var speed = 150/500;
 					var life = 6;
 					break;
 				case 3:
 					var enemyStr = "Gourouzad/gourouzad_adult_small.png";
-					var speed = 500/500;
-					var life = 8;
+					var speed = 100/500;
+					var life = 9;
 					break;
 			}
 			break;
@@ -264,18 +264,18 @@ Scene.prototype.popEnemy = function ()
 			switch (level) {
 				case 1:
 					var enemyStr = "Govamey/govamey_baby_small.png";
-					var speed = 300/500;
-					var life = 1;
+					var speed = 150/500;
+					var life = 4;
 					break;
 				case 2:
 					var enemyStr = "Govamey/govamey_young_small.png";
-					var speed = 400/500;
-					var life = 6;
+					var speed = 100/500;
+					var life = 10;
 					break;
 				case 3:
 					var enemyStr = "Govamey/govamey_adult_small.png";
-					var speed = 500/500;
-					var life = 8;
+					var speed = 50/500;
+					var life = 16;
 					break;
 			}
 			break;
@@ -302,18 +302,18 @@ Scene.prototype.popEnemy = function ()
 			switch (level) {
 				case 1:
 					var enemyStr = "Leviarkna/leviarkna_baby_small.png";
-					var speed = 300/500;
-					var life = 1;
+					var speed = 200/500;
+					var life = 3;
 					break;
 				case 2:
 					var enemyStr = "Leviarkna/leviarkna_young_small.png";
-					var speed = 400/500;
+					var speed = 150/500;
 					var life = 6;
 					break;
 				case 3:
 					var enemyStr = "Leviarkna/leviarkna_adult_small.png";
-					var speed = 500/500;
-					var life = 8;
+					var speed = 100/500;
+					var life = 9;
 					break;
 			}
 			break;
@@ -321,18 +321,18 @@ Scene.prototype.popEnemy = function ()
 			switch (level) {
 				case 1:
 					var enemyStr = "Modraemi/modraemi_baby_small.png";
-					var speed = 300/500;
-					var life = 1;
+					var speed = 150/500;
+					var life = 4;
 					break;
 				case 2:
 					var enemyStr = "Modraemi/modraemi_young_small.png";
-					var speed = 400/500;
-					var life = 6;
+					var speed = 100/500;
+					var life = 10;
 					break;
 				case 3:
 					var enemyStr = "Modraemi/modraemi_adult_small.png";
-					var speed = 500/500;
-					var life = 8;
+					var speed = 50/500;
+					var life = 16;
 					break;
 			}
 			break;
@@ -359,18 +359,18 @@ Scene.prototype.popEnemy = function ()
 			switch (level) {
 				case 1:
 					var enemyStr = "Shadoa/shadoa_baby_small.png";
-					var speed = 300/500;
-					var life = 1;
+					var speed = 200/500;
+					var life = 3;
 					break;
 				case 2:
 					var enemyStr = "Shadoa/shadoa_young_small.png";
-					var speed = 400/500;
+					var speed = 150/500;
 					var life = 6;
 					break;
 				case 3:
 					var enemyStr = "Shadoa/shadoa_adult_small.png";
-					var speed = 500/500;
-					var life = 8;
+					var speed = 100/500;
+					var life = 9;
 					break;
 			}
 			break;
@@ -378,18 +378,18 @@ Scene.prototype.popEnemy = function ()
 			switch (level) {
 				case 1:
 					var enemyStr = "Urajam/urajam_baby_small.png";
-					var speed = 300/500;
-					var life = 1;
+					var speed = 150/500;
+					var life = 4;
 					break;
 				case 2:
 					var enemyStr = "Urajam/urajam_young_small.png";
-					var speed = 400/500;
-					var life = 6;
+					var speed = 100/500;
+					var life = 10;
 					break;
 				case 3:
 					var enemyStr = "Urajam/urajam_adult_small.png";
-					var speed = 500/500;
-					var life = 8;
+					var speed = 50/500;
+					var life = 16;
 					break;
 			}
 			break;
