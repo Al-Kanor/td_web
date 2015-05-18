@@ -1,4 +1,4 @@
-var Enemy = function(scene, sprite)
+var Enemy = function(scene, sprite, boss)
 {
 	var self = this;
 	
@@ -20,6 +20,8 @@ var Enemy = function(scene, sprite)
 
 	this.life = 1;
 	
+	this.goldGiven = 0;
+
 	this.dest = null;
 	this.sprite = sprite;
 	
@@ -28,8 +30,11 @@ var Enemy = function(scene, sprite)
 	this.moveIndexMax = 3;
 
 	this.isMoving = true;
+	this.boss = boss;
 
 	self.loadSprite(this.sprite);
+
+	this.deadMonster = new Audio('res/sound/dead.mp3');
 };
 
 Enemy.prototype.placement = function (x, y)
@@ -95,8 +100,9 @@ Enemy.prototype.update = function (timeData)
 	}
 	else if (!this.isMoving)
 	{
+		this.deadMonster.play();
 	    this.scene.player.removeLife();
-	    this.scene.enemyList[this.index] = null;
+	    this.scene.removeEnemy(this);
 		this.scene.currentNbEnemy --;
 	}
 };

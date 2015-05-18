@@ -39,9 +39,10 @@ var Scene = function(game, terrain)
 	}, false);
 
 
-	this.audio = new Audio('res/sound/ambiance.mp3');
-	this.audio.play();
+	this.audio = new Audio('res/sound/w3.mp3');
+	//this.audio = new Audio('res/sound/ambiance.mp3');
 	this.audio.loop = true;
+	this.audio.play();
 };
 
 //action 0 : placement, action 1 : recuperation de la case
@@ -126,6 +127,7 @@ Scene.prototype.popEnemy = function ()
 {
 	var rand = Math.floor (Math.random () * this.nbEnemies);
 	var score = this.game.scene.player.score;
+	var boss = false;
 	if (score < 10) {
 		var level = 1;
 	}
@@ -421,13 +423,23 @@ Scene.prototype.popEnemy = function ()
 					break;
 			}
 			break;
+		case 15:
+			switch (level) {
+				case 1:
+					var enemyStr = "Urajam/urajam_baby_small.png";
+					var speed = 150/500;
+					var life = 60;
+					boss = true;
+					break;
+			}
+			break;
 	}
-	var en = new Enemy(this, "res/sprites/enemies/" + enemyStr); 
+	var en = new Enemy(this, "res/sprites/enemies/" + enemyStr, boss); 
 	en.speed = speed;
-	en.life = life * 3;
+	en.life = life * 2;
+	en.goldGiven = en.life * 20;
 
 	var caseLength = this.game.caseSize;
-	//en.moveTo(864, 418);
 	var pattern = Math.floor(Math.random() * 3);
 	var move = [];
 	switch (pattern) {
@@ -511,6 +523,17 @@ Scene.prototype.update = function (timeData)
 	    if (this.shootList[i] != undefined)
 	        this.shootList[i].update(timeData);
 	}
+}
+
+Scene.prototype.removeEnemy = function (en)
+{
+	for(var i=0; i<this.enemyList.length; i++)
+		{
+			if(this.enemyList[i] == en)
+			{
+				this.enemyList[i] = null;
+			}
+		}
 }
 
 Scene.prototype.render = function (g)

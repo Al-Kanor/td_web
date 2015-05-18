@@ -17,6 +17,11 @@ var Projectile = function(scene, sprite)
     this.index = 0;
 
     self.loadSprite(this.sprite);
+
+    this.deadMonster = new Audio('res/sound/dead.mp3');
+    //this.audio = new Audio('res/sound/bubble2.mp3');
+    this.audio = new Audio('res/sound/arrow.mp3');
+    this.audio.play();
 }
 
 Projectile.prototype.moveTo = function (X, Y) {
@@ -74,9 +79,15 @@ Projectile.prototype.update = function (timeData)
 			        this.scene.enemyList[i].life--;
 			        if (this.scene.enemyList[i].life == 0)
 			        {
+                        this.deadMonster.play();
+                        if(this.scene.enemyList[i].boss)
+                        {
+                            this.scene.player.life++;
+                        }
+                        this.scene.player.gold += this.scene.enemyList[i].goldGiven;
 			            this.scene.enemyList.splice(i, 1);
 						this.scene.currentNbEnemy--;
-			            this.scene.player.gold += 20;
+			            
 						this.scene.player.score++;
 			        }
 				}

@@ -23,7 +23,6 @@ var Tower = function(scene, sprite)
 	this.target = null;
 	self.loadSprite(this.sprite);
 
-	this.audio = new Audio('res/sound/bubble2.mp3');
 };
 
 Tower.prototype.placement = function (x, y)
@@ -59,7 +58,6 @@ Tower.prototype.tir = function ()
         }
 	    if(this.target != null)
 	    {
-    		this.audio.play();
 		    var tir = new Projectile(this.scene, "res/sprites/tir.png");
 		    tir.placement(this.x, this.y);
 		    tir.moveTo(this.target.x, this.target.y);
