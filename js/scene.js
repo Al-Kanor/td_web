@@ -37,9 +37,14 @@ var Scene = function(game, terrain)
 	    var offset = getOffset(game.canvas);
 		return false;
 	}, false);
-	
+
+
+	this.audio = new Audio('res/sound/ambiance.mp3');
+	this.audio.play();
+	this.audio.loop = true;
 };
 
+//action 0 : placement, action 1 : recuperation de la case
 Scene.prototype.WorldToGrid = function(X,Y, action)
 {
     var caseLength = this.game.caseSize;
@@ -68,6 +73,10 @@ Scene.prototype.WorldToGrid = function(X,Y, action)
                         theTower.evolve();
                         this.player.gold -= 500;
                    }
+                }
+                else if(level1[i][j] == GroundType.EMPTY && action == 1)
+                {
+                	return level1[i][j];
                 }
             }
         }
@@ -415,8 +424,7 @@ Scene.prototype.popEnemy = function ()
 	}
 	var en = new Enemy(this, "res/sprites/enemies/" + enemyStr); 
 	en.speed = speed;
-	en.life = life;
-	en.placement(-32, Math.random() * 600);
+	en.life = life * 3;
 
 	var caseLength = this.game.caseSize;
 	//en.moveTo(864, 418);
@@ -424,24 +432,35 @@ Scene.prototype.popEnemy = function ()
 	var move = [];
 	switch (pattern) {
 		case 0:
-			move[0] = [1 * caseLength + caseLength / 2, 1 * caseLength + caseLength / 2];
-			move[1] = [3 * caseLength + caseLength / 2, 4 * caseLength + caseLength / 2];
-			move[2] = [13 * caseLength + caseLength / 2, 6 * caseLength + caseLength / 2];
+			en.placement(-32, this.game.caseSize * 4 + this.game.caseSize / 2);
+			move[0] = [1 * caseLength + caseLength / 2, 4 * caseLength + caseLength / 2];
+			move[1] = [1 * caseLength + caseLength / 2, 2 * caseLength + caseLength / 2];
+			move[2] = [12 * caseLength + caseLength / 2, 2 * caseLength + caseLength / 2];
+			move[3] = [12 * caseLength + caseLength / 2, 6 * caseLength + caseLength / 2];
+			move[4] = [13 * caseLength + caseLength / 2, 6 * caseLength + caseLength / 2];
 			break;
 		case 1:
-			move[0] = [2 * caseLength + caseLength / 2, 2 * caseLength + caseLength / 2];
-			move[1] = [10 * caseLength + caseLength / 2, 1 * caseLength + caseLength / 2];
-			move[2] = [13 * caseLength + caseLength / 2, 6 * caseLength + caseLength / 2];
+			en.placement(-32, this.game.caseSize * 5 + this.game.caseSize / 2);
+			move[0] = [5 * caseLength + caseLength / 2, 5 * caseLength + caseLength / 2];
+			move[1] = [5 * caseLength + caseLength / 2, 6 * caseLength + caseLength / 2];
+			move[2] = [8 * caseLength + caseLength / 2, 6 * caseLength + caseLength / 2];
+			move[3] = [8 * caseLength + caseLength / 2, 5 * caseLength + caseLength / 2];
+			move[4] = [10 * caseLength + caseLength / 2, 5 * caseLength + caseLength / 2];
+			move[5] = [10 * caseLength + caseLength / 2, 6 * caseLength + caseLength / 2];
+			move[6] = [13 * caseLength + caseLength / 2, 6 * caseLength + caseLength / 2];
 			break;
 		case 2:
-			move[0] = [4 * caseLength + caseLength / 2, 7 * caseLength + caseLength / 2];
-			move[1] = [7 * caseLength + caseLength / 2, 7 * caseLength + caseLength / 2];
-			move[2] = [13 * caseLength + caseLength / 2, 6 * caseLength + caseLength / 2];
+			en.placement(-32, this.game.caseSize * 6 + this.game.caseSize / 2);
+			move[0] = [1 * caseLength + caseLength / 2, 6 * caseLength + caseLength / 2];
+			move[1] = [1 * caseLength + caseLength / 2, 8 * caseLength + caseLength / 2];
+			move[2] = [13 * caseLength + caseLength / 2, 8 * caseLength + caseLength / 2];
+			move[3] = [13 * caseLength + caseLength / 2, 6 * caseLength + caseLength / 2];
 			break;
 	}
-	
+	en.moveIndexMax = move.length;
 	en.index = this.indexEnemyList;
 	this.enemyList[this.indexEnemyList] = en;
+	en.move = move;
 	this.indexEnemyList++;
 }
 
@@ -483,7 +502,9 @@ Scene.prototype.update = function (timeData)
 	for(var i=0; i<this.enemyList.length; i++)
 	{
 		if(this.enemyList[i] != undefined)
+		{
 			this.enemyList[i].update(timeData);
+		}
 	}
 
 	for (var i = 0; i < this.shootList.length; i++) {
@@ -508,7 +529,9 @@ Scene.prototype.render = function (g)
 		for(var i=0; i<this.enemyList.length; i++)
 		{
 			if(this.enemyList[i] != undefined)
+			{
 				this.enemyList[i].render(g);
+			}
 		}
 
 		for (var i = 0; i < this.shootList.length; i++) {

@@ -10,7 +10,7 @@ var Enemy = function(scene, sprite)
 	this.scene = scene;
 	this.game = this.scene.game;
 	
-    this.speed = 200/500;
+    this.speed = 0.06;
 	this.x = 0;
 	this.y = 0;
 	
@@ -25,6 +25,9 @@ var Enemy = function(scene, sprite)
 	
 	this.move = [];
 	this.moveIndex = 0;
+	this.moveIndexMax = 3;
+
+	this.isMoving = true;
 
 	self.loadSprite(this.sprite);
 };
@@ -33,34 +36,34 @@ Enemy.prototype.placement = function (x, y)
 {
 	this.x = x;
 	this.y = y;
+	var dis = Math.sqrt(Math.pow(this.targetX - this.x, 2)+Math.pow(this.targetY - this.y, 2))
+	if(dis < 10)
+	{
+		this.isMoving = true;
+	}
 };
 
 Enemy.prototype.moveTo = function (move)
 {
-	this.move = move;
+	if(this.moveIndex < this.moveIndexMax)
+	{
+		this.move = move;
 
-	this.startX = this.x;
-	this.startY = this.y;
+		this.startX = this.x;
+		this.startY = this.y;
 
-	/*
-	this.targetX = X;
-	this.targetY = Y;
-	*/
-	this.targetX = move[moveIndex][0];
-	this.targetY = move[moveIndex][1];
+		this.targetX = move[this.moveIndex][0];
+		this.targetY = move[this.moveIndex][1];
 
-	//test
-	this.targetX = 864;
-	this.targetY = 418;
 
-	this.moveTime = this.game.timeData.local;
-	
-	var dis = Math.sqrt(Math.pow(this.targetX - this.startX, 2)+Math.pow(this.targetY - this.startY, 2)) //algorithm de la distance
-	this.moveDuration = dis / (this.speed * this.scale);
-	this.isMoving = true;
-	var str = "";
+		this.moveTime = this.game.timeData.local;
+		
+		var dis = Math.sqrt(Math.pow(this.targetX - this.startX, 2)+Math.pow(this.targetY - this.startY, 2)) //algorithm de la distance
+		this.moveDuration = dis / (this.speed * this.scale);
+		var str = "";
 
-	moveIndex++;
+		this.moveIndex++;
+	}
 };
 
 Enemy.prototype.loadSprite = function (srcImg)
@@ -78,20 +81,16 @@ Enemy.prototype.update = function (timeData)
 		
 		/* easeIn>1 , 0>easeOut>1 */
 		//f = Math.pow(f,0.6);
-		
+
 		this.placement(
 			f * (this.targetX - this.startX) + this.startX,
-			f * (this.targetY - this.startY) + this.startY);
+			f * (this.targetY - this.startY) + this.startY
+		);
 		
-		/*this.placement (
-			this.startX + Math.floor ((Math.random () * 3)  - 1) * f,
-			this.startY + Math.floor ((Math.random () * 3)  - 1) * f
-		);*/
 	}
 	else if (this.isMoving)
 	{
 		this.isMoving = false;
-		this.placement(this.targetX, this.targetY);
 		this.moveTo(this.move);
 	}
 	else if (!this.isMoving)

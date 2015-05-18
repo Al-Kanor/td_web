@@ -72,7 +72,6 @@ Projectile.prototype.update = function (timeData)
 			    if (dest < 50)
 			    {
 			        this.scene.enemyList[i].life--;
-                    console.log(this.scene.enemyList[i].life);
 			        if (this.scene.enemyList[i].life == 0)
 			        {
 			            this.scene.enemyList.splice(i, 1);

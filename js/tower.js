@@ -13,7 +13,7 @@ var Tower = function(scene, sprite)
 	this.speed = 500;
 	this.lastShoot = 0;
 	this.range = 5;
-	this.timeToShoot = 1000;
+	this.timeToShoot = 2000;
 	this.evolution= 0;
 	this.x = 0;
 	this.y = 0;
@@ -22,6 +22,8 @@ var Tower = function(scene, sprite)
 	
 	this.target = null;
 	self.loadSprite(this.sprite);
+
+	this.audio = new Audio('res/sound/bubble2.mp3');
 };
 
 Tower.prototype.placement = function (x, y)
@@ -57,6 +59,7 @@ Tower.prototype.tir = function ()
         }
 	    if(this.target != null)
 	    {
+    		this.audio.play();
 		    var tir = new Projectile(this.scene, "res/sprites/tir.png");
 		    tir.placement(this.x, this.y);
 		    tir.moveTo(this.target.x, this.target.y);
