@@ -35,6 +35,7 @@ var Enemy = function(scene, sprite, boss)
 	self.loadSprite(this.sprite);
 
 	this.deadMonster = new Audio('res/sound/dead.mp3');
+	this.lostLive = new Audio('res/sound/lost.mp3');
 };
 
 Enemy.prototype.placement = function (x, y)
@@ -100,7 +101,7 @@ Enemy.prototype.update = function (timeData)
 	}
 	else if (!this.isMoving)
 	{
-		this.deadMonster.play();
+		this.lostLive.play();
 	    this.scene.player.removeLife();
 	    this.scene.removeEnemy(this);
 		this.scene.currentNbEnemy --;
