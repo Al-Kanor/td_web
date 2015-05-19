@@ -19,7 +19,7 @@ var Game = function()
 	this.graphics.height = this.canvas.height;
 	this.graphics.timeData = this.timeData;
 	
-	this.drawGrid(this.graphics);
+	//this.drawGrid(this.graphics);
 
 	this.colNum = 16;
 	this.rowNum = 11;
@@ -97,7 +97,7 @@ Game.prototype.render = function (g)
 	    {
 			this.scene.render(g);
 
-			this.drawGrid(g);
+			//this.drawGrid(g);
 
 			g.fillStyle = "red";
 			g.font = "25px Verdana";

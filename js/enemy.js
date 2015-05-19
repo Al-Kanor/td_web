@@ -33,9 +33,32 @@ var Enemy = function(scene, sprite, boss)
 	this.boss = boss;
 
 	self.loadSprite(this.sprite);
+	this.deathImage = new Image();
+	this.deathImage.src = "res/sprites/death.png";
+
+	this.deathRow = 1;
+	this.deathCol = 5;
+	this.frameRate = 16;
+	this.frameDuration = 1 / this.frameRate * 1000;
+	this.frameCount = this.deathCol * this.deathRow;
+	this.currentFrame = 0;
+	this.frameWidth = this.deathImage.width / this.deathCol;
+	this.frameHeight = this.deathImage.height / this.deathRow;
+	this.lastFrameUpdate = 0;
+	this.deathX = 0;
+	this.deathY = 0;
+
+	this.deathListener = {};
+
+	this.dead = false;
 
 	this.deadMonster = new Audio('res/sound/dead.mp3');
 	this.lostLive = new Audio('res/sound/lost.mp3');
+};
+
+Enemy.prototype.addMoveListener = function(listener)
+{
+	this.deathListener.push(listener);
 };
 
 Enemy.prototype.placement = function (x, y)
@@ -102,11 +125,24 @@ Enemy.prototype.update = function (timeData)
 	else if (!this.isMoving)
 	{
 		this.lostLive.play();
-	    this.scene.player.removeLife();
-	    this.scene.removeEnemy(this);
-		this.scene.currentNbEnemy --;
+		PrepareToDie();
 	}
 };
+
+Enemy.prototype.PrepareToDie = function()
+{
+	this.dead = true;
+	this.deathX = this.x;
+	this.deathY = this.y;
+}
+
+Enemy.prototype.remove = function()
+{
+	console.log("remove");
+	this.scene.player.removeLife();
+    this.scene.removeEnemy(this);
+	this.scene.currentNbEnemy --;
+}
 
 Enemy.prototype.render = function (g)
 {
@@ -115,7 +151,47 @@ Enemy.prototype.render = function (g)
 		if(this.currentSprite)
 		{
 		    g.scale(1, 1);
-		    g.drawImage(this.currentSprite, -this.currentSprite.width / 2, -this.currentSprite.height / 2);
+
+		    if(this.dead)
+		    {
+		    	console.log("dead:"+this.currentFrame);
+				var elapsedTime = g.timeData.local - this.lastFrameUpdate;
+				console.log("elapsedTime:"+elapsedTime);
+
+				if(elapsedTime >= this.frameDuration)
+				{
+					this.elapsedFrame = Math.floor(elapsedTime / this.frameDuration);
+					
+					if(this.currentFrame == this.frameCount - 1)
+					{
+						console.log("dead:"+this.currentFrame);
+						this.remove();
+					}
+					else
+					{
+						this.currentFrame = (this.currentFrame + this.elapsedFrame) % this.frameCount;
+					}
+
+					this.lastFrameUpdate = g.timeData.local;
+				}
+				
+				var currentCol = this.currentFrame % this.deathCol;
+				var currentRow = Math.floor(this.currentFrame / this.deathCol);
+
+				console.log("this.frameWidth"+this.frameWidth);
+
+				console.log("place:"+this.currentFrame * currentCol)
+
+				g.drawImage(this.deathImage, 
+					this.currentFrame * currentCol, 0, this.frameWidth, this.frameHeight,
+					0 - this.frameWidth / 2, 0 - this.frameHeight / 2, this.frameWidth, this.frameHeight
+				);
+
+			}
+			else
+			{
+		    	g.drawImage(this.currentSprite, -this.currentSprite.width / 2, -this.currentSprite.height / 2);
+		    }
 		}
 	g.restore();
 };
