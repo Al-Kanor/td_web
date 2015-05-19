@@ -124,7 +124,7 @@ Scene.prototype.getTower = function(X, Y)
 
 Scene.prototype.popEnemy = function ()
 {
-	var rand = Math.floor (Math.random () * this.nbEnemies);
+	var rand = Math.floor (Math.random () * this.nbEnemies + 1);
 	var score = this.game.scene.player.score;
 	var boss = false;
 	if (score < 10) {
@@ -449,7 +449,7 @@ Scene.prototype.popEnemy = function ()
 	}
 	var en = new Enemy(this, "res/sprites/enemies/" + enemyStr, boss); 
 	en.speed = speed;
-	en.life = life * 2;
+	en.life = life;// * 2;
 	en.goldGiven = en.life * 20;
 
 	var caseLength = this.game.caseSize;
