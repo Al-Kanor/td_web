@@ -154,9 +154,7 @@ Enemy.prototype.render = function (g)
 
 		    if(this.dead)
 		    {
-		    	console.log("dead:"+this.currentFrame);
 				var elapsedTime = g.timeData.local - this.lastFrameUpdate;
-				console.log("elapsedTime:"+elapsedTime);
 
 				if(elapsedTime >= this.frameDuration)
 				{
@@ -164,7 +162,6 @@ Enemy.prototype.render = function (g)
 					
 					if(this.currentFrame == this.frameCount - 1)
 					{
-						console.log("dead:"+this.currentFrame);
 						this.remove();
 					}
 					else
@@ -177,10 +174,6 @@ Enemy.prototype.render = function (g)
 				
 				var currentCol = this.currentFrame % this.deathCol;
 				var currentRow = Math.floor(this.currentFrame / this.deathCol);
-
-				console.log("this.frameWidth"+this.frameWidth);
-
-				console.log("place:"+this.currentFrame * currentCol)
 
 				g.drawImage(this.deathImage, 
 					this.currentFrame * currentCol, 0, this.frameWidth, this.frameHeight,

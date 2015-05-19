@@ -18,32 +18,36 @@ var Game = function()
 	this.graphics.width = this.canvas.width;
 	this.graphics.height = this.canvas.height;
 	this.graphics.timeData = this.timeData;
-	
-	//this.drawGrid(this.graphics);
+
+	addEventListener('resize', function () {
+	    self.onResize();
+	});
+	self.onResize();
 
 	this.colNum = 16;
 	this.rowNum = 11;
 	this.caseSize = Game.WIDTH / this.colNum;
 
 	this.scene = new Scene(this, level1);
-	addEventListener('resize', function () {
-	    self.onResize();
-	});
-	self.onResize();
-	requestAnimationFrame(function loop(){
-		self.mainLoop();
-		requestAnimationFrame(loop);
-	});
 
-	document.getElementById("play-button").addEventListener("click", this.launchGame);
+	//_self= this;
+
+	document.getElementById("play-button").addEventListener("click", function () { self.launchGame(self); });
 };
 
 Game.WIDTH = 1024;
 Game.HEIGHT = 672;
 
-Game.prototype.launchGame = function () {
+Game.prototype.launchGame = function (game) {
 	var menu = document.getElementById("menu");
 	menu.className = "disabled";
+
+	//var self = this;
+	//console.log(self);
+	requestAnimationFrame(function loop(){
+		game.mainLoop();
+		requestAnimationFrame(loop);
+	});
 };
 
 Game.prototype.onResize = function()
