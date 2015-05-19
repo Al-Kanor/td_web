@@ -7,6 +7,8 @@ include 'connection.php';
 	<head>
 		<meta charset="UTF-8"/>
 		<title>td web</title>
+		<link rel="stylesheet" type="text/css" href="css/main.css"/>
+		<link rel="stylesheet" type="text/css" href="css/gui.css"/>
 		<script src="js/level-design.json"></script>
 		<script src="js/GroundType.js"></script>
         <script src="js/player.js"></script>
@@ -26,8 +28,9 @@ include 'connection.php';
 	<div id="screen">
 		<canvas id="game"></canvas>
 		<div id="gui">
-			<div id="main-win" class="window">
-
+			<div id="menu" class="enabled">
+				<h1>Super Devil Tower Defense Turbo 2</h1>
+				<button id="play-button">Play</button>
 			</div>
 		</div>
 	</div>
