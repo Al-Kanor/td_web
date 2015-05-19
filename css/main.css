@@ -1,0 +1,15 @@
+@font-face {
+	font-family: gun4fc;
+	src: url(../res/font/gun4fc.ttf);
+}
+
+html, body {
+	font-family: gun4fc, sans-serif;
+	font-size: 12px;
+	cursor: crosshair;
+	background-color: black;
+}
+
+.disabled {
+	display: none;
+}

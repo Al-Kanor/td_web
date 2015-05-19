@@ -19,7 +19,7 @@ var Game = function()
 	this.graphics.height = this.canvas.height;
 	this.graphics.timeData = this.timeData;
 	
-	this.drawGrid(this.graphics);
+	//this.drawGrid(this.graphics);
 
 	this.colNum = 16;
 	this.rowNum = 11;
@@ -34,10 +34,17 @@ var Game = function()
 		self.mainLoop();
 		requestAnimationFrame(loop);
 	});
+
+	document.getElementById("play-button").addEventListener("click", this.launchGame);
 };
 
 Game.WIDTH = 1024;
 Game.HEIGHT = 672;
+
+Game.prototype.launchGame = function () {
+	var menu = document.getElementById("menu");
+	menu.className = "disabled";
+};
 
 Game.prototype.onResize = function()
 {
@@ -71,7 +78,7 @@ Game.prototype.update = function (timeData)
 
 Game.prototype.drawGrid = function (g)
 {
-    g.fillStyle = "red";
+    g.fillStyle = "black";
     g.beginPath();
     for (var col = 0; col <= this.colNum; col++) {
         for (var row = 0; row <= this.rowNum ; row++) {
@@ -88,7 +95,7 @@ Game.prototype.drawGrid = function (g)
 Game.prototype.render = function (g)
 {
 	g.clearRect(0, 0, g.width, g.height);
-	g.fillStyle = "red";
+	g.fillStyle = "black";
 	g.fillRect(0, 0, g.width, g.height);
 
 	g.save();
@@ -97,7 +104,7 @@ Game.prototype.render = function (g)
 	    {
 			this.scene.render(g);
 
-			this.drawGrid(g);
+			//this.drawGrid(g);
 
 			g.fillStyle = "red";
 			g.font = "25px Verdana";

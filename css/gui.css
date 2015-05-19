@@ -1,0 +1,108 @@
+#menu {
+	position: absolute;
+	top: 10%;
+	left: 30%;
+	width: 40%;
+	height: 380px;
+	color: white;
+	background-image: radial-gradient(rgb(222, 14, 245), rgb(24, 160, 32));
+	box-shadow: 8px 8px 10px rgba(32, 32, 32, 1);
+	padding-top: 14px;
+	padding-left: 14px;
+	padding-right: 14px;
+	text-align: center;
+	border-radius: 100px;
+}
+
+button {
+	margin-top: 20px;
+	text-decoration: none;
+	background-color: rgb(6, 120, 140);
+	border-radius: 18px;
+	color: white;
+	font-family: gun4fc;
+	font-size: 18px;
+	width: 40%;
+	height: 60px;
+}
+
+button:hover {
+	transition: 0.2s ease-out;
+	box-shadow: 0px 0px 10px rgba(12, 185, 204, 1);
+	background-color: rgb(12, 185, 204);
+	width: 45%;
+}
+
+#menu h1 {
+	font-style: italic;
+	color: rgb(0, 0, 100);
+	font-size: 48px;
+	margin-top: 0px;
+	text-shadow:	-1px -1px 5px rgba(12, 185, 204, 1),
+					-1px 1px 5px rgba(12, 185, 204, 1),
+					1px -1px 5px rgba(12, 185, 204, 1),
+					1px 1px 5px rgba(12, 185, 204, 1)
+	;
+}
+
+#life {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	width: 80px;
+	height: 16px;
+	background-image: url(../img/heart-off.png);
+}
+
+#life-0 {
+	height: 100%;
+	width: 0%;
+	background-image: url(../img/heart-on.png);
+}
+
+#life-1 {
+	height: 100%;
+	width: 20%;
+	background-image: url(../img/heart-on.png);
+}
+
+#life-2 {
+	height: 100%;
+	width: 40%;
+	background-image: url(../img/heart-on.png);
+}
+
+#life-3 {
+	height: 100%;
+	width: 60%;
+	background-image: url(../img/heart-on.png);
+}
+
+#life-4 {
+	height: 100%;
+	width: 80%;
+	background-image: url(../img/heart-on.png);
+}
+
+#life-5 {
+	height: 100%;
+	width: 100%;
+	background-image: url(../img/heart-on.png);
+}
+
+#game-score {
+	position: absolute;
+	top: 10px;
+	right: 20px;
+	width: 40px;
+	height: 14px;
+}
+
+.star {
+	position: absolute;
+	top: 0;
+	left: 20px;
+	height: 14px;
+	width: 14px;
+	background: url(../img/star.png);
+}

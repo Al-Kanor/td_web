@@ -20,7 +20,7 @@ var Scene = function(game, terrain)
 	var mouseX = 0;
 	this.mouseY = 0;
 	
-	this.nbEnemies = 15;	// Number of different existing creatures
+	this.nbEnemies = 19;	// Number of different existing creatures
 	this.nextEnemyPop = 0;
 	this.nbPopablEnemy = 10;
 	this.currentNbEnemy = 0;
@@ -424,14 +424,28 @@ Scene.prototype.popEnemy = function ()
 			}
 			break;
 		case 15:
-			switch (level) {
-				case 1:
-					var enemyStr = "Urajam/urajam_baby_small.png";
-					var speed = 150/500;
-					var life = 60;
-					boss = true;
-					break;
-			}
+			var enemyStr = "../boss/bezelvice_small.png";
+			var speed = 50/500;
+			var life = 100;
+			boss = true;
+			break;
+		case 16:
+			var enemyStr = "../boss/deusexachina_small.png";
+			var speed = 200/500;
+			var life = 30;
+			boss = true;
+			break;
+		case 17:
+			var enemyStr = "../boss/dioegenes_small.png";
+			var speed = 400/500;
+			var life = 10;
+			boss = true;
+			break;
+		case 18:
+			var enemyStr = "../boss/dioegenes_small.png";
+			var speed = 250/500;
+			var life = 50;
+			boss = true;
 			break;
 	}
 	var en = new Enemy(this, "res/sprites/enemies/" + enemyStr, boss); 
