@@ -1,9 +1,7 @@
 var Player = function(scene)
 {
 	this.scene = scene;
-    this.life = 20;
-    this.gold = 500;
-	this.score = 0;
+  this.init();
 }
 
 Player.prototype.removeLife = function ()
@@ -24,6 +22,6 @@ Player.prototype.removeLife = function ()
 Player.prototype.init = function ()
 {
 	this.life = 20;
-  this.gold = 1000;
+  this.gold = 500;
 	this.score = 0;
 }
