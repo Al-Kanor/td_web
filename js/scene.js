@@ -40,7 +40,6 @@ var Scene = function(game, terrain)
 
 
 	this.audio = new Audio('res/sound/w3.mp3');
-	//this.audio = new Audio('res/sound/ambiance.mp3');
 	this.audio.loop = true;
 	this.audio.play();
 };
@@ -65,14 +64,14 @@ Scene.prototype.WorldToGrid = function(X,Y, action)
                         this.player.gold -= 100;
                     }
                 }
-                else if(level1[i][j] == GroundType.TOWER && action == 0)
+                else if(level1[i][j] == GroundType.GRADE1 || level1[i][j] == GroundType.GRADE2 && action == 0)
                 {
-                    if (this.player.gold >= 500)
+                	var theTower = this.getTower((j * caseLength) + caseLength / 2, (i * caseLength) + caseLength / 2);
+                    if (this.player.gold >= theTower.cost)
                     {
-                        level1[i][j] = 4;
-                        var theTower = this.getTower((j * caseLength) + caseLength / 2, (i * caseLength) + caseLength / 2);
+                        level1[i][j] ++;    
                         theTower.evolve();
-                        this.player.gold -= 500;
+                        this.player.gold -= theTower.cost;
                    }
                 }
                 else if(level1[i][j] == GroundType.EMPTY && action == 1)

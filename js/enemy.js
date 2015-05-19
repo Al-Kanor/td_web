@@ -105,6 +105,8 @@ Enemy.prototype.loadSprite = function (srcImg)
 
 Enemy.prototype.update = function (timeData)
 {
+	if (this.dead) return;
+	
 	if(this.moveTime && timeData.local < this.moveTime + this.moveDuration){
 		var f = (timeData.local - this.moveTime)/this.moveDuration;
 		
@@ -125,7 +127,8 @@ Enemy.prototype.update = function (timeData)
 	else if (!this.isMoving)
 	{
 		this.lostLive.play();
-		PrepareToDie();
+		this.PrepareToDie();
+		this.scene.player.removeLife();
 	}
 };
 
@@ -138,8 +141,6 @@ Enemy.prototype.PrepareToDie = function()
 
 Enemy.prototype.remove = function()
 {
-	console.log("remove");
-	this.scene.player.removeLife();
     this.scene.removeEnemy(this);
 	this.scene.currentNbEnemy --;
 }

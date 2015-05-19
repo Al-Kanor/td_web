@@ -86,7 +86,6 @@ Projectile.prototype.update = function (timeData)
                         }
                         this.scene.player.gold += this.scene.enemyList[i].goldGiven;
                         this.scene.enemyList[i].PrepareToDie();
-			            //this.scene.enemyList.splice(i, 1);
 						this.scene.currentNbEnemy--;
 			            
 						this.scene.player.score++;

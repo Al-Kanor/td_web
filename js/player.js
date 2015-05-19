@@ -2,13 +2,12 @@ var Player = function(scene)
 {
 	this.scene = scene;
     this.life = 20;
-    this.gold = 1000;
+    this.gold = 500;
 	this.score = 0;
 }
 
 Player.prototype.removeLife = function ()
 {
-   //this.life - Math.min (this.life - 1, 0);
    
    if(this.life > 0)
    {
@@ -25,6 +24,6 @@ Player.prototype.removeLife = function ()
 Player.prototype.init = function ()
 {
 	this.life = 20;
-    this.gold = 1000;
+  this.gold = 1000;
 	this.score = 0;
 }

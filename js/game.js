@@ -30,8 +30,6 @@ var Game = function()
 
 	this.scene = new Scene(this, level1);
 
-	//_self= this;
-
 	document.getElementById("play-button").addEventListener("click", function () { self.launchGame(self); });
 };
 
@@ -41,9 +39,6 @@ Game.HEIGHT = 672;
 Game.prototype.launchGame = function (game) {
 	var menu = document.getElementById("menu");
 	menu.className = "disabled";
-
-	//var self = this;
-	//console.log(self);
 	requestAnimationFrame(function loop(){
 		game.mainLoop();
 		requestAnimationFrame(loop);
@@ -110,10 +105,10 @@ Game.prototype.render = function (g)
 
 			//this.drawGrid(g);
 
-			g.fillStyle = "red";
-			g.font = "25px Verdana";
-			g.fillText("LIVES : " + this.scene.player.life, 20, 30);
-			g.fillText("GOLD : " + this.scene.player.gold, 300, 30);
+			g.fillStyle = "#800cff";
+			g.font = "25px Calibri";
+			g.fillText("LIVES : " + this.scene.player.life, 450, 30);
+			g.fillText("GOLD : " + this.scene.player.gold, 450, 50);
 		}
 	g.restore();
 };

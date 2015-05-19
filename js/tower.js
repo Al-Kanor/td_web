@@ -11,6 +11,7 @@ var Tower = function(scene, sprite)
 	this.game = this.scene.game;
 	
 	this.speed = 500;
+	this.cost = 500;
 	this.lastShoot = 0;
 	this.range = 5;
 	this.timeToShoot = 2000;
